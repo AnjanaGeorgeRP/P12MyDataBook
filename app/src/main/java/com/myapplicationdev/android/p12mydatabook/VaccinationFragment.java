@@ -33,6 +33,7 @@ public class VaccinationFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     SharedPreferences prefs;
+    String str = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,7 @@ public class VaccinationFragment extends Fragment {
             }
         });
         prefs = getActivity().getSharedPreferences("prefsVac", MODE_PRIVATE);
-        String str = prefs.getString("vac", "");
+        str = prefs.getString("vac", "");
         tv.setText(str);
 
 
@@ -63,15 +64,16 @@ public class VaccinationFragment extends Fragment {
                 LayoutInflater inflaterdialog = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout passPhrase = (LinearLayout) inflaterdialog.inflate(R.layout.edit, null);
                 final EditText et = (EditText) passPhrase.findViewById(R.id.editText);
-
+                et.setText(str);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Edit Bio")
+                builder.setTitle("Edit Vaccination")
                         .setView(passPhrase)
                         .setNeutralButton("Cancel",null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 tv.setText(et.getText().toString());
+                                str = et.getText().toString();
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("vac", et.getText().toString());
                                 editor.apply();

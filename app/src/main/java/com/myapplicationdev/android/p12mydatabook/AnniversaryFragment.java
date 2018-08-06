@@ -31,6 +31,7 @@ public class AnniversaryFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     SharedPreferences prefs;
+    String str = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +52,7 @@ public class AnniversaryFragment extends Fragment {
             }
         });
         prefs = getActivity().getSharedPreferences("prefsAnniversary", MODE_PRIVATE);
-        String str = prefs.getString("ann", "");
+        str = prefs.getString("ann", "");
         tv.setText(str);
 
 
@@ -61,15 +62,16 @@ public class AnniversaryFragment extends Fragment {
                 LayoutInflater inflaterdialog = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout passPhrase = (LinearLayout) inflaterdialog.inflate(R.layout.edit, null);
                 final EditText et = (EditText) passPhrase.findViewById(R.id.editText);
-
+                et.setText(str);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Edit Bio")
+                builder.setTitle("Edit Anniversary")
                         .setView(passPhrase)
                         .setNeutralButton("Cancel",null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 tv.setText(et.getText().toString());
+                                str = et.getText().toString();
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("ann", et.getText().toString());
                                 editor.apply();

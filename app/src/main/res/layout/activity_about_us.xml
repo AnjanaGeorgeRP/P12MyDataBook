@@ -9,10 +9,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Created by : Ah Chong, Peter, Mary"/>
+        android:text="Created by : Ah Chong, Peter, Mary"
+        android:textSize="20dp"/>
 
     <ImageView
         android:id="@+id/ivPic"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -20,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="C347 - Android Programming II \n \t\t\t\t Republic Polytechnic"
+        android:text="C347-Android Programming II \n \t\t\t\t Republic Polytechnic"
         android:textColor="@android:color/black"
         android:textSize="24dp"/>
 

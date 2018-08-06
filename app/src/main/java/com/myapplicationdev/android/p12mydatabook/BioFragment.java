@@ -32,6 +32,7 @@ public class BioFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     SharedPreferences prefs;
+    String str = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +53,7 @@ public class BioFragment extends Fragment {
             }
         });
         prefs = getActivity().getSharedPreferences("prefsBio", MODE_PRIVATE);
-        String str = prefs.getString("bio", "");
+        str = prefs.getString("bio", "");
         tv.setText(str);
 
 
@@ -62,7 +63,7 @@ public class BioFragment extends Fragment {
                 LayoutInflater inflaterdialog = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout passPhrase = (LinearLayout) inflaterdialog.inflate(R.layout.edit, null);
                 final EditText et = (EditText) passPhrase.findViewById(R.id.editText);
-
+                et.setText(str);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Edit Bio")
                         .setView(passPhrase)
@@ -71,6 +72,7 @@ public class BioFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 tv.setText(et.getText().toString());
+                                str = et.getText().toString();
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("bio", et.getText().toString());
                                 editor.apply();
