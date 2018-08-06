@@ -18,6 +18,7 @@ public class AboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         ab = getSupportActionBar();
+        ab.setTitle("About Us");
         ab.setDisplayHomeAsUpEnabled(true);
         iv = (ImageView) findViewById(R.id.ivPic);
         String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/80/Republic_Polytechnic_Logo.jpg";
